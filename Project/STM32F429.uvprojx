@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -610,6 +610,16 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Driver\DELAY\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Driver\SDRAM\sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Driver\USART\usart.c</FilePath>
             </File>
           </Files>
         </Group>
