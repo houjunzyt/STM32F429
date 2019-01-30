@@ -3,6 +3,7 @@
 
 #include "stm32f4xx.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #define SDRAM_Size 0x01000000  //16M×Ö½Ú
 

@@ -54,7 +54,7 @@ Heap_Size       EQU     0x00000200
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
 Heap_Mem        SPACE   Heap_Size
-__heap_limit
+__heap_limit    EQU     0xd1000000 ;设置堆空间的极限地址(SDRAM),
 
                 PRESERVE8
                 THUMB
@@ -187,12 +187,15 @@ Reset_Handler    PROC
                  EXPORT  Reset_Handler             [WEAK]
         IMPORT  SystemInit
         IMPORT  __main
+		IMPORT  SDRAM_Init ;外部文件引入声明
 
-                 LDR     R0, =SystemInit
-                 BLX     R0
-                 LDR     R0, =__main
-                 BX      R0
-                 ENDP
+		 LDR     R0, =SystemInit
+		 BLX     R0
+		 LDR     R0, =SDRAM_Init
+		 BLX     R0
+		 LDR     R0, =__main
+		 BX      R0
+		 ENDP
 
 ; Dummy Exception Handlers (infinite loops which can be modified)
 

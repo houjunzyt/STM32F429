@@ -57,6 +57,8 @@
  extern "C" {
 #endif /* __cplusplus */
   
+#define __EXRAM __attribute__ ((section ("EXRAM")))
+	
 /** @addtogroup Library_configuration_section
   * @{
   */
