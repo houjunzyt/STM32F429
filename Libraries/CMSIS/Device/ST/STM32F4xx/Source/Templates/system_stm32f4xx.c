@@ -1033,6 +1033,26 @@ void SystemInit_ExtMemCtl(void)
   * @param  None
   * @retval None
   */
+	
+/*********************************************
+ PC0->WE
+ 
+ PD15->D1  PD14->D0  PD10->D15  PD9->D14  PD8->D13  PD1->D3  PD0->D2
+ 
+ PE15->D12 PE14->D11 PE13->D10  PE12->D9  PE11->D8  PE10->D7 PE9->D6
+ PE8->D5   PE7->D4   PE1->DQM1  PE0->DQM0
+ 
+ PF15->A9  PF14->A8  PF13->A7   PF12->A6  PF11->RAS PF5->A5  PF4->A4
+ PF3->A3   PF2->A2   PF1->A1    PF0->A0
+ 
+ PG15->CAS PG8->CLK  PG5->BA1   PG4->BA0  PG1->A11  PG0->A10
+ 
+ PH15->D23 PH14->D22 PH13->D21  PH12->D20 PH11->D19 PH10->D18 PH9->D17 
+ PH8->D16  PH7->CKE  PH6->CS    
+ 
+ PI10->D31 PI9->D30  PI7->D29   PI6->D28  PI5->DQM3 PI4->DQM2 PI3->D27
+ PI2->D26  PI1->D25  PI0->D24
+*********************************************/
 void SystemInit_ExtMemCtl(void)
 {
   register uint32_t tmpreg = 0, timeout = 0xFFFF;
@@ -1041,7 +1061,7 @@ void SystemInit_ExtMemCtl(void)
   /* Enable GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH and GPIOI interface 
       clock */
   RCC->AHB1ENR |= 0x000001FC;
-  
+// PC0->WE 
   /* Connect PCx pins to FMC Alternate function */
   GPIOC->AFR[0]  = 0x0000000c;
   GPIOC->AFR[1]  = 0x00007700;
@@ -1053,7 +1073,7 @@ void SystemInit_ExtMemCtl(void)
   GPIOC->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PCx pins */ 
   GPIOC->PUPDR   = 0x00500000;
-  
+// PD15->D1  PD14->D0  PD10->D15  PD9->D14  PD8->D13  PD1->D3  PD0->D2  
   /* Connect PDx pins to FMC Alternate function */
   GPIOD->AFR[0]  = 0x000000CC;
   GPIOD->AFR[1]  = 0xCC000CCC;
@@ -1065,7 +1085,8 @@ void SystemInit_ExtMemCtl(void)
   GPIOD->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PDx pins */ 
   GPIOD->PUPDR   = 0x00000000;
-
+// PE15->D12 PE14->D11 PE13->D10  PE12->D9  PE11->D8  PE10->D7 PE9->D6
+// PE8->D5   PE7->D4   PE1->DQM1  PE0->DQM0
   /* Connect PEx pins to FMC Alternate function */
   GPIOE->AFR[0]  = 0xC00000CC;
   GPIOE->AFR[1]  = 0xCCCCCCCC;
@@ -1077,10 +1098,11 @@ void SystemInit_ExtMemCtl(void)
   GPIOE->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PEx pins */ 
   GPIOE->PUPDR   = 0x00000000;
-
+// PF15->A9  PF14->A8  PF13->A7   PF12->A6  PF11->RAS PF5->A5  PF4->A4
+// PF3->A3   PF2->A2   PF1->A1    PF0->A0
   /* Connect PFx pins to FMC Alternate function */
-  GPIOF->AFR[0]  = 0xcccccccc;
-  GPIOF->AFR[1]  = 0xcccccccc;
+  GPIOF->AFR[0]  = 0x00CCCCCC;
+  GPIOF->AFR[1]  = 0xCCCCC000;
   /* Configure PFx pins in Alternate function mode */   
   GPIOF->MODER   = 0xAA800AAA;
   /* Configure PFx pins speed to 50 MHz */ 
@@ -1089,31 +1111,33 @@ void SystemInit_ExtMemCtl(void)
   GPIOF->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PFx pins */ 
   GPIOF->PUPDR   = 0x00000000;
-
+// PG15->CAS PG8->CLK  PG5->BA1   PG4->BA0  PG1->A11  PG0->A10
   /* Connect PGx pins to FMC Alternate function */
-  GPIOG->AFR[0]  = 0xcccccccc;
-  GPIOG->AFR[1]  = 0xcccccccc;
+  GPIOG->AFR[0]  = 0x00CC00CC;
+  GPIOG->AFR[1]  = 0xC000000C;
   /* Configure PGx pins in Alternate function mode */ 
-  GPIOG->MODER   = 0xaaaaaaaa;
+  GPIOG->MODER   = 0x80020A0A;
   /* Configure PGx pins speed to 50 MHz */ 
-  GPIOG->OSPEEDR = 0xaaaaaaaa;
+  GPIOG->OSPEEDR = 0x80020A0A;
   /* Configure PGx pins Output type to push-pull */  
   GPIOG->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PGx pins */ 
   GPIOG->PUPDR   = 0x00000000;
-  
+//	PH15->D23 PH14->D22 PH13->D21  PH12->D20 PH11->D19 PH10->D18 PH9->D17 
+//  PH8->D16  PH7->CKE  PH6->CS      
   /* Connect PHx pins to FMC Alternate function */
-  GPIOH->AFR[0]  = 0x00C0CC00;
+  GPIOH->AFR[0]  = 0xCC000000;
   GPIOH->AFR[1]  = 0xCCCCCCCC;
   /* Configure PHx pins in Alternate function mode */ 
-  GPIOH->MODER   = 0xAAAA08A0;
+  GPIOH->MODER   = 0xAAAAA000;
   /* Configure PHx pins speed to 50 MHz */ 
-  GPIOH->OSPEEDR = 0xAAAA08A0;
+  GPIOH->OSPEEDR = 0xAAAAA000;
   /* Configure PHx pins Output type to push-pull */  
   GPIOH->OTYPER  = 0x00000000;
   /* No pull-up, pull-down for PHx pins */ 
   GPIOH->PUPDR   = 0x00000000;
-  
+// PI10->D31 PI9->D30  PI7->D29   PI6->D28  PI5->DQM3 PI4->DQM2 PI3->D27
+// PI2->D26  PI1->D25  PI0->D24  
   /* Connect PIx pins to FMC Alternate function */
   GPIOI->AFR[0]  = 0xCCCCCCCC;
   GPIOI->AFR[1]  = 0x00000CC0;
@@ -1128,11 +1152,11 @@ void SystemInit_ExtMemCtl(void)
   
 /*-- FMC Configuration ------------------------------------------------------*/
   /* Enable the FMC interface clock */
-  RCC->AHB3ENR |= 0x00000001;
+  RCC->AHB3ENR |= 0x00000001;//开启FMC的时钟
   
-  /* Configure and enable SDRAM bank1 */
-  FMC_Bank5_6->SDCR[0] = 0x000039D0;
-  FMC_Bank5_6->SDTR[0] = 0x01115351;      
+  /* Configure and enable SDRAM bank2,下标1对bank2设置，0对bank1设置*/ 
+  FMC_Bank5_6->SDCR[1] = 0x000001E4;
+  FMC_Bank5_6->SDTR[1] = 0x00010361;      
   
   /* SDRAM initialization sequence */
   /* Clock enable command */

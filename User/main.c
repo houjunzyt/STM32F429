@@ -3,15 +3,19 @@
 #include "led.h"
 #include "sdram.h"
 #include "usart.h"
+#include "touch_043.h"
+#include "touch_iic.h"
 
 int i __EXRAM;
 
 int main(void)
 {
 	SysTick_Config(SystemCoreClock/100000);//us级别定时
-	Usart1_Config();
-	SDRAM_Init();
-	LED_Init();
+	Usart1_Config();//串口初始化
+	SDRAM_Init();//SDRAM初始化
+	LED_Init();//板载LED灯初始化
+	Touch_Init();		//触摸屏初始化
+	
 	if(SDRAM_Test())
 	{
 		printf("SDRAM init Success\n");
@@ -30,13 +34,11 @@ int main(void)
 	printf("kaka:%x\n",(int)&i);
   while(1)
 	{
-		printf("kaka\n");
-		LED1_ON;
-		LED2_ON;
-		Delay_ms(1000);
-		LED1_OFF;
-		LED2_OFF;
-		Delay_ms(1000);	
+		Touch_Scan(); //触摸扫描
+		if(touchInfo.flag==1)		// 若发生触摸
+		{
+			printf("坐标值：%d,%d\n",touchInfo.x[0],touchInfo.y[0]);		// y坐标
+		}	
 	}
 }
 
