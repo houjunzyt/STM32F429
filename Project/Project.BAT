@@ -50,6 +50,8 @@ SET CPU_CLOCK=0x00B71B00
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\usart.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\touch_043.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\touch_iic.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\lcd_fonts.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\lcd_rgb.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\main.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\stm32f4xx_it.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmLink" --Via "..\Output\STM32F429.lnp"

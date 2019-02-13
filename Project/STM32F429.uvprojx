@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH;..\Driver\LCD</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -630,6 +630,16 @@
               <FileName>touch_iic.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Driver\TOUCH\touch_iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Driver\LCD\lcd_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Driver\LCD\lcd_rgb.c</FilePath>
             </File>
           </Files>
         </Group>
