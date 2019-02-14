@@ -1,4 +1,5 @@
 #include "lcd_rgb.h"
+#include <stdlib.h>
 
 static pFONT *LCD_Fonts;
 uint32_t LCD_MemoryAdd;
@@ -234,9 +235,8 @@ void LCD_Init(void)
 	LTDC_InitTypeDef  LTDC_InitStruct;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_LTDC, ENABLE); 	//使能LTDC时钟
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2D, ENABLE); //使能DMA2D
-
 	LCD_GPIO_Config();  //初始化LCD引脚
-	SDRAM_Init(); 		  //初始化SDRAM
+//	SDRAM_Init(); 		  //初始化SDRAM
 
 	LCD_PLLSAIN = LCD_CLK * LCD_PLLSAIR * LCD_CLKDIV;	//根据需要使用的LCD时钟计算PLLSAIN参数，可取范围为50~432
 	RCC_PLLSAIConfig(LCD_PLLSAIN,7,LCD_PLLSAIR);  //时钟配置
@@ -264,7 +264,6 @@ void LCD_Init(void)
 	LTDC_InitStruct.LTDC_TotalHeigh =LCD_Height + VBP + VFP;
 
 	LTDC_Init(&LTDC_InitStruct);	//初始化LCD控制器
-
 	LCD_LayerInit();	//层初始化
 	LTDC_Cmd(ENABLE);	//使能LCD控制器
 	
@@ -276,14 +275,13 @@ void LCD_Init(void)
 	LCD_SetBackColor(LCD_BLACK); //设置背景色
 	LCD_SetColor(LCD_WHITE);	//设置画笔颜色
 	LCD_Clear(); 	//清屏，刷背景色
-
 #if LCD_NUM_LAYERS == 2	 //如果定义了第二层
 	LCD_SetLayer(1); 
 	LCD_SetBackColor(LCD_BLACK); //设置背景色
 	LCD_SetColor(LCD_WHITE);	//设置画笔颜色
 	LCD_Clear(); //清屏，刷背景色
 #endif
-	Delay_ms(200);
+//	Delay_ms(200);
 	GPIO_SetBits(LTDC_Black_PORT,LTDC_Black_PIN);	// 打开背光
 }  
 

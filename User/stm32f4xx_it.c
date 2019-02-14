@@ -63,12 +63,12 @@ void NMI_Handler(void)
   * @param  None
   * @retval None
   */
-void HardFault_Handler(void)
-{
-  /* Go to infinite loop when Hard Fault exception occurs */
-  while (1)
-  {}
-}
+//void HardFault_Handler(void)
+//{
+//  /* Go to infinite loop when Hard Fault exception occurs */
+//  while (1)
+//  {}
+//}
 
 /**
   * @brief  This function handles Memory Manage exception.
@@ -127,18 +127,18 @@ void SVC_Handler(void)
   * @param  None
   * @retval None
   */
-void PendSV_Handler(void)
-{}
+//void PendSV_Handler(void)
+//{}
 
-
-extern u32 TimingDelay;//delay.c中通过记录中断次数达到延时
-void SysTick_Handler(void)
-{
-	if (TimingDelay != 0x00) 
-	{
-	TimingDelay--;
-	}
-}
+//在RTT 的board.c里面实现了
+//extern u32 TimingDelay;//delay.c中通过记录中断次数达到延时
+//void SysTick_Handler(void)
+//{
+//	if (TimingDelay != 0x00) 
+//	{
+//	TimingDelay--;
+//	}
+//}
 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */

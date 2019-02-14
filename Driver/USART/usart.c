@@ -34,9 +34,7 @@ void Usart1_Config(void)
 {		
 	USART_InitTypeDef USART_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);//开时钟
-	
-	USART1_GPIO_Config();	// IO口初始化
-		 
+	USART1_GPIO_Config();	// IO口初始化 
 	// 配置串口各项参数
 	USART_InitStructure.USART_BaudRate 	 = USART1_BaudRate; //波特率
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //数据位8位

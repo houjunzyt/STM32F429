@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH;..\Driver\LCD</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH;..\Driver\LCD;..\RT-Thread\include\libc;..\RT-Thread\include;..\RT-Thread\components\finsh;..\RT-Thread\bsp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -655,6 +655,106 @@
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\stm32f4xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\bsp\board.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RTT/Source</GroupName>
+          <Files>
+            <File>
+              <FileName>clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>components.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\components.c</FilePath>
+            </File>
+            <File>
+              <FileName>device.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\device.c</FilePath>
+            </File>
+            <File>
+              <FileName>idle.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\idle.c</FilePath>
+            </File>
+            <File>
+              <FileName>ipc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\ipc.c</FilePath>
+            </File>
+            <File>
+              <FileName>irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\irq.c</FilePath>
+            </File>
+            <File>
+              <FileName>kservice.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\kservice.c</FilePath>
+            </File>
+            <File>
+              <FileName>mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>memheap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\memheap.c</FilePath>
+            </File>
+            <File>
+              <FileName>mempool.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\mempool.c</FilePath>
+            </File>
+            <File>
+              <FileName>object.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\object.c</FilePath>
+            </File>
+            <File>
+              <FileName>scheduler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\scheduler.c</FilePath>
+            </File>
+            <File>
+              <FileName>signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>thread.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\thread.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\src\timer.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RTT/Ports</GroupName>
+          <Files>
+            <File>
+              <FileName>context_rvds.S</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\RT-Thread\libcpu\arm\cortex-m4\context_rvds.S</FilePath>
+            </File>
+            <File>
+              <FileName>cpuport.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RT-Thread\libcpu\arm\cortex-m4\cpuport.c</FilePath>
             </File>
           </Files>
         </Group>
