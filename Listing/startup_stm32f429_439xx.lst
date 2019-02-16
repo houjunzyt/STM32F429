@@ -84,26 +84,26 @@ ARM Macro Assembler    Page 2
    49 00000400         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
    50 00000400         ; </h>
    51 00000400         
-   52 00000400 00000200 
+   52 00000400 00800000 
                        Heap_Size
-                               EQU              0x00000200
+                               EQU              0x00800000
    53 00000400         
    54 00000400                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
 3
    55 00000000         __heap_base
    56 00000000         Heap_Mem
                                SPACE            Heap_Size
-   57 00000200 D1000000 
+   57 00800000 D1000000 
                        __heap_limit
                                EQU              0xd1000000  ;设置堆空间的极限地
                                                             址(SDRAM),
-   58 00000200         
-   59 00000200                 PRESERVE8
-   60 00000200                 THUMB
-   61 00000200         
-   62 00000200         
-   63 00000200         ; Vector Table Mapped to Address 0 at Reset
-   64 00000200                 AREA             RESET, DATA, READONLY
+   58 00800000         
+   59 00800000                 PRESERVE8
+   60 00800000                 THUMB
+   61 00800000         
+   62 00800000         
+   63 00800000         ; Vector Table Mapped to Address 0 at Reset
+   64 00800000                 AREA             RESET, DATA, READONLY
    65 00000000                 EXPORT           __Vectors
    66 00000000                 EXPORT           __Vectors_End
    67 00000000                 EXPORT           __Vectors_Size
@@ -2381,7 +2381,7 @@ es\arm\startup_stm32f429_439xx.s
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Absolute symbols
 
-Heap_Size 00000200
+Heap_Size 00800000
 
 Symbol: Heap_Size
    Definitions

@@ -10,10 +10,15 @@
 //
 #define GUI_EXTBUFADD  0xD02FD000
 //U32 aMemory[GUI_NUMBYTES / 4] __EXRAM;
-#define GUI_BLOCKSIZE (500)
 void GUI_X_Config(void) 
 {
-	static U32 aMemory[GUI_NUMBYTES / 4] __attribute__((at(GUI_EXTBUFADD)));
+	uint32_t * aMemory=NULL;
+	aMemory=(uint32_t *)malloc(GUI_NUMBYTES);
+	if(aMemory==NULL)
+	{
+		rt_kprintf("aMemory malloc fail\n");
+	}
+//	static U32 aMemory[GUI_NUMBYTES / 4] __attribute__((at(GUI_EXTBUFADD)));
   GUI_ALLOC_AssignMemory(aMemory, GUI_NUMBYTES);
 }
 

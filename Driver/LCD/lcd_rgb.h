@@ -17,7 +17,7 @@
 #define LCD_Height    272				//LCD的像素宽度
 #define LCD_Pixels    480*272 		//分辨率
 
-#define LCD_MemoryAdd   0xD0000000 	//显存的起始地址  
+#define LCD_MemoryAdd   0xD0000000//显存的起始地址  
 
 //	第二层的显存的偏移地址 
 //	这里预留了emWin使用32位色格式时，三缓冲所需的空间
