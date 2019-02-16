@@ -75,6 +75,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_ltdc.h"
 #include "stm32f4xx_rcc.h"
+#include "rtthread.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Driver
   * @{
@@ -239,7 +240,7 @@ void LTDC_Cmd(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONAL_STATE(NewState));
-
+	rt_kprintf("on 1\n");
   if (NewState != DISABLE)
   {
     /* Enable LTDC by setting LTDCEN bit */
@@ -250,6 +251,7 @@ void LTDC_Cmd(FunctionalState NewState)
     /* Disable LTDC by clearing LTDCEN bit */
     LTDC->GCR &= ~(uint32_t)LTDC_GCR_LTDCEN;
   }
+	rt_kprintf("on 2\n");
 }
 
 /**
@@ -339,7 +341,7 @@ void LTDC_ReloadConfig(uint32_t LTDC_Reload)
 {
   /* Check the parameters */
   assert_param(IS_LTDC_RELOAD(LTDC_Reload));
-
+	rt_kprintf("assert_param success\n");
   /* Sets the Reload type */
   LTDC->SRCR = (uint32_t)LTDC_Reload;
 }

@@ -63,12 +63,12 @@
 // <h>Hook Configuration      //钩子函数配置  
 // <c1>using hook
 //  <i>using hook
-//#define RT_USING_HOOK
+#define RT_USING_HOOK
 // </c>
 
 // <c1>using idle hook
 //  <i>using idle hook
-//#define RT_USING_IDLE_HOOK
+#define RT_USING_IDLE_HOOK
 // </c>
 // </h>
 
@@ -105,7 +105,7 @@
 
 // <c1>Using Event
 //  <i>Using Event
-#define RT_USING_EVENT        //事件
+//#define RT_USING_EVENT        //事件
 // </c>
 
 // <c1>Using MailBox
@@ -115,7 +115,7 @@
 
 // <c1>Using Message Queue
 //  <i>Using Message Queue
-//#define RT_USING_MESSAGEQUEUE   //消息队列
+#define RT_USING_MESSAGEQUEUE   //消息队列
 // </c>
 // </h>
 
@@ -126,7 +126,7 @@
 // </c>
 // <c1>Dynamic Heap Management
 //  <i>Dynamic Heap Management
-//#define RT_USING_HEAP      //是否使用堆空间
+#define RT_USING_HEAP      //是否使用堆空间
 // </c>
 // <c1>using small memory
 //  <i>using small memory

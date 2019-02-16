@@ -19,7 +19,7 @@
 #include "touch_043.h"
 #include "touch_iic.h"
 #include "lcd_rgb.h"
-
+extern void SystemCoreClockUpdate(void);
 #if 0
 
 //systick相关寄存器定义以及初始化函数
@@ -32,7 +32,7 @@
 
 // Updates the variable SystemCoreClock and must be called 
 // whenever the core clock is changed during program execution.
-extern void SystemCoreClockUpdate(void);
+
 
 // Holds the system core clock, which is the system clock 
 // frequency supplied to the SysTick timer and the processor 
@@ -80,17 +80,17 @@ RT_WEAK void *rt_heap_end_get(void)
 */
 void rt_hw_board_init()//RTT启动调用，时钟和串口
 {	
-#if 0
+
 	/* 更新系统时钟 */
 	SystemCoreClockUpdate(); //固件库提供
-	
+#if 0	
 	/* SysTick 初始化 */
 	_SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);  
 #endif	
 	SysTick_Config( SystemCoreClock / RT_TICK_PER_SECOND );//使用固件库的systick初始化
 	//硬件初始化
 	Usart1_Config();//串口初始化
-	SDRAM_Init();//SDRAM初始化
+//	SDRAM_Init();//SDRAM初始化
 	LED_Init();//板载LED灯初始化
 	Touch_Init();		//触摸屏初始化
 	if(SDRAM_Test())
@@ -101,7 +101,7 @@ void rt_hw_board_init()//RTT启动调用，时钟和串口
 	{
 		printf("SDRAM init fail\n");
 	}
-	LCD_Init();			// LCD控制器初始化
+//	LCD_Init();			// LCD控制器初始化
 	
 	
 	/*硬件 BSP 初始化统统放在这里，比如 LED，串口， LCD 等*/ 

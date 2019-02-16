@@ -62,6 +62,8 @@
 /** @addtogroup Library_configuration_section
   * @{
   */
+#define __FPU_PRESENT     1
+#define __FPU_USED        1
   
 /* Uncomment the line below according to the target STM32 device used in your
    application 

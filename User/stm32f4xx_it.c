@@ -1,42 +1,20 @@
-/**
-  ******************************************************************************
-  * @file    FMC_SDRAM/stm32f4xx_it.c 
-  * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    11-November-2013
-  * @brief   Main Interrupt Service Routines.
-  *         This file provides template for all exceptions handler and
-  *         peripherals interrupt service routine.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
-  */
+/***
+	***************************************************************************
+	*	@file  	stm32f4xx_it.c
+	*	@brief   中断服务函数
+   ***************************************************************************
+   *  @description
+	*
+	*  此文件存放了STM32所有的异常操作和中断服务函数
+	* 	
+	***************************************************************************
+***/
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
-
-/** @addtogroup STM32F429I_DISCOVERY_Examples
+  
+/** @addtogroup Template_Project
   * @{
   */
-
-/** @addtogroup FMC_SDRAM
-  * @{
-  */ 
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -67,7 +45,8 @@ void NMI_Handler(void)
 //{
 //  /* Go to infinite loop when Hard Fault exception occurs */
 //  while (1)
-//  {}
+//  {
+//  }
 //}
 
 /**
@@ -79,7 +58,8 @@ void MemManage_Handler(void)
 {
   /* Go to infinite loop when Memory Manage exception occurs */
   while (1)
-  {}
+  {
+  }
 }
 
 /**
@@ -91,7 +71,8 @@ void BusFault_Handler(void)
 {
   /* Go to infinite loop when Bus Fault exception occurs */
   while (1)
-  {}
+  {
+  }
 }
 
 /**
@@ -103,7 +84,17 @@ void UsageFault_Handler(void)
 {
   /* Go to infinite loop when Usage Fault exception occurs */
   while (1)
-  {}
+  {
+  }
+}
+
+/**
+  * @brief  This function handles SVCall exception.
+  * @param  None
+  * @retval None
+  */
+void SVC_Handler(void)
+{
 }
 
 /**
@@ -112,47 +103,31 @@ void UsageFault_Handler(void)
   * @retval None
   */
 void DebugMon_Handler(void)
-{}
+{
+}
 
-/**
-  * @brief  This function handles SVCall exception.
-  * @param  None
-  * @retval None
-  */
-void SVC_Handler(void)
-{}
-
-/**
-  * @brief  This function handles PendSV_Handler exception.
-  * @param  None
-  * @retval None
-  */
-//void PendSV_Handler(void)
-//{}
-
-//在RTT 的board.c里面实现了
-//extern u32 TimingDelay;//delay.c中通过记录中断次数达到延时
-//void SysTick_Handler(void)
-//{
-//	if (TimingDelay != 0x00) 
-//	{
-//	TimingDelay--;
-//	}
-//}
 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f429_439xx.s).                         */
+/*  file (startup_stm32f4xx.s).                                               */
 /******************************************************************************/
 
-/**
-  * @}
-  */ 
+extern void LTDC_ISR_Handler(void);
+
+//	函数:LTDC中断服务函数
+//	说明：在emWin_Drive.c里被调用
+//
+void LTDC_IRQHandler(void)
+{
+  LTDC_ISR_Handler();
+}
+
 
 /**
   * @}
   */ 
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
