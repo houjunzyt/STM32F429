@@ -636,7 +636,6 @@ static void LTDC_SetLayerPos(int LayerIndex, int xPos, int yPos)
 
   xSize = LCD_GetXSizeEx(LayerIndex);
   ySize = LCD_GetYSizeEx(LayerIndex);
-	rt_kprintf("LCD_GetYSizeEx\n");
   HorizontalStart = xPos + HBP + 1;
   HorizontalStop  = xPos + HBP + xSize;
   VerticalStart   = yPos + VBP + 1;
@@ -651,7 +650,6 @@ static void LTDC_SetLayerPos(int LayerIndex, int xPos, int yPos)
   apLayer[LayerIndex]->WVPCR  = (VerticalStart | (VerticalStop << 16));
   
   /* Reload configuration */
-	rt_kprintf("reload\n");
   LTDC_ReloadConfig(LTDC_SRCR_VBR); /* Reload on next blanking period */
 }
 
@@ -1085,7 +1083,6 @@ void LTDC_ISR_Handler(void)
   */
 int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
 {
-	rt_kprintf("LCD_X_DisplayDrive\n");
   int r = 0;
   int xPos, yPos;
   
@@ -1093,16 +1090,12 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
   {
   case LCD_X_INITCONTROLLER: 
     {
-			rt_kprintf("LCD_X_INITCONTROLLER\n");
       /* Called during the initialization process in order to set up the display controller and put it into operation */
-//			printf("LayerIndex£º%d\n",LayerIndex);
       LCD_LL_Init(LayerIndex);
-			rt_kprintf("LCD_X_INITCONTROLLER  end\n");
       break;
     }
   case LCD_X_SETORG: 
     {
-			rt_kprintf("LCD_X_SETORG\n");
       /* Required for setting the display origin which is passed in the 'xPos' and 'yPos' element of p */
       LCD_X_SETORG_INFO * p;
      	if(pData==NULL)
@@ -1110,133 +1103,98 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
 				rt_kprintf("pdata -------NULL\n");
 			}
       p = (LCD_X_SETORG_INFO *)pData;
-      
       apLayer[LayerIndex]->CFBAR = layer_address[LayerIndex] + p->yPos * layer_xsize[LayerIndex] * layer_bpp[LayerIndex];
-			rt_kprintf("begin called LTDC_ReloadConfig\n");
       LTDC_ReloadConfig(LTDC_SRCR_VBR); // Reload on next blanking period
-			rt_kprintf("LCD_X_SETORG end\n");
 			break;
     }
   case LCD_X_SHOWBUFFER: 
     {
-			rt_kprintf("LCD_X_SHOWBUFFER\n");
       /* Required if multiple buffers are used. The 'Index' element of p contains the buffer index */
-      LCD_X_SHOWBUFFER_INFO * p;
-      
+      LCD_X_SHOWBUFFER_INFO * p;    
       p = (LCD_X_SHOWBUFFER_INFO *)pData;
       layer_pending_buffer[LayerIndex] = p->Index;
-			rt_kprintf("LCD_X_SHOWBUFFER end\n");
       break;
     }
   case LCD_X_SETLUTENTRY: 
     {
-			rt_kprintf("LCD_X_SETLUTENTRY\n");
       /* Required for setting a lookup table entry which is passed in the 'Pos' and 'Color' element of p */
       LCD_X_SETLUTENTRY_INFO * p;
-      
       p = (LCD_X_SETLUTENTRY_INFO *)pData;
       LTDC_SetLUTEntry(LayerIndex, p->Color, p->Pos);
-      rt_kprintf("LCD_X_SETLUTENTRY end\n");
 			break;
     }
   case LCD_X_ON: 
     {
-			rt_kprintf("LCD_X_ON\n");
       /* Required if the display controller should support switching on and off */
       LTDC_Cmd(ENABLE); /* display ON */
-			rt_kprintf("LCD_X_ON end\n");
       break;
     }
   case LCD_X_OFF: 
     {
-			rt_kprintf("LCD_X_OFF\n");
-			
       /* Required if the display controller should support switching on and off */
       LTDC_Cmd(DISABLE); /* display OFF */
-			rt_kprintf("LCD_X_OFF end\n");
       break;
     }
   case LCD_X_SETVIS: 
     {
-			rt_kprintf("LCD_X_SETVIS\n");
       /* Required for setting the layer visibility which is passed in the 'OnOff' element of pData */
       LCD_X_SETVIS_INFO * p;
-      
       p = (LCD_X_SETVIS_INFO *)pData;
       LTDC_LayerCmd(apLayer[LayerIndex], p->OnOff ? ENABLE : DISABLE);
-      
       /* Reload shadow register */
       LTDC_ReloadConfig(LTDC_SRCR_IMR);
-			rt_kprintf("LCD_X_SETVIS end\n");
       break;
     }
   case LCD_X_SETPOS: 
     {
       LCD_X_SETPOS_INFO * p;
-			rt_kprintf("LCD_X_SETPOS\n");
       p = (LCD_X_SETPOS_INFO *)pData;
-			rt_kprintf("entery LTDC_SetLayerPos end\n");
       LTDC_SetLayerPos(LayerIndex, p->xPos, p->yPos);
-      
-			rt_kprintf("LCD_X_SETPOS end\n");
 			break;
     }
   case LCD_X_SETSIZE: 
     {
-			rt_kprintf("LCD_X_SETSIZE\n");
       /* Required for setting the layer position which is passed in the 'xPos' and 'yPos' element of pData */
-      LCD_X_SETSIZE_INFO * p;
-      
-      
+      LCD_X_SETSIZE_INFO * p;    
       GUI_GetLayerPosEx(LayerIndex, &xPos, &yPos);
       p = (LCD_X_SETSIZE_INFO *)pData;
       layer_xsize[LayerIndex] = p->xSize;
       layer_ysize[LayerIndex] = p->ySize;
       LTDC_SetLayerPos(LayerIndex, xPos, yPos);
-			rt_kprintf("LCD_X_SETSIZE end\n");
       break;
     }
   case LCD_X_SETALPHA: 
     {
-			rt_kprintf("LCD_X_SETALPHA\n");
       /* Required for setting the alpha value which is passed in the 'Alpha' element of pData */
       LCD_X_SETALPHA_INFO * p;
       
       p = (LCD_X_SETALPHA_INFO *)pData;
       LTDC_SetLayerAlpha(LayerIndex, p->Alpha);
-			rt_kprintf("LCD_X_SETALPHA end\n");
       break;
     }
   case LCD_X_SETCHROMAMODE: 
     {
-			rt_kprintf("LCD_X_SETCHROMAMODE\n");
       /* Required for setting the chroma mode which is passed in the 'ChromaMode' element of pData */
       LCD_X_SETCHROMAMODE_INFO * p;
       
       p = (LCD_X_SETCHROMAMODE_INFO *)pData;
       LTDC_LayerEnableColorKeying(apLayer[LayerIndex], (p->ChromaMode != 0) ? ENABLE : DISABLE);
-      
-			rt_kprintf("LCD_X_SETCHROMAMODE end\n");
 			break;
     }
   case LCD_X_SETCHROMA: 
     {
-			rt_kprintf("LCD_X_SETCHROMA\n");
       /* Required for setting the chroma value which is passed in the 'ChromaMin' and 'ChromaMax' element of pData */
       LCD_X_SETCHROMA_INFO * p;
       U32 Color;
-      
       p = (LCD_X_SETCHROMA_INFO *)pData;
       Color = ((p->ChromaMin & 0xFF0000) >> 16) | (p->ChromaMin & 0x00FF00) | ((p->ChromaMin & 0x0000FF) << 16);
       apLayer[LayerIndex]->CKCR = Color;
       LTDC_ReloadConfig(LTDC_SRCR_VBR); // Reload on next blanking period	
-			rt_kprintf("LCD_X_SETCHROMA end\n");
       break;
     }
   default:
     r = -1;
   }
-	rt_kprintf("LCD_X_DisplayDrive end\n");
   return r;
 	
 }
