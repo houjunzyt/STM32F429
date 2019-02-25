@@ -11,7 +11,7 @@
 ***/
 
 #include "stm32f4xx_it.h"
-  
+#include "sdio.h"
 /** @addtogroup Template_Project
   * @{
   */
@@ -124,10 +124,21 @@ void LTDC_IRQHandler(void)
   LTDC_ISR_Handler();
 }
 
+//	函数：SD卡全局中断
+//
+void SDIO_IRQHandler(void)
+{
+	/* Process All SDIO Interrupt Sources */
+	SD_ProcessIRQSrc();
+}
 
-/**
-  * @}
-  */ 
+//	函数：SD卡DMA中断
+//
+void SD_SDIO_DMA_IRQHANDLER(void)
+{
+	/* Process DMA2 Stream3 or DMA2 Stream6 Interrupt Sources */
+	SD_ProcessDMAIRQ();
+}
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

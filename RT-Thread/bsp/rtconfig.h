@@ -100,7 +100,7 @@
 
 // <c1>Using Mutex
 //  <i>Using Mutex 
-//#define RT_USING_MUTEX      //ª•≥‚¡ø
+#define RT_USING_MUTEX      //ª•≥‚¡ø
 // </c>
 
 // <c1>Using Event

@@ -19,6 +19,8 @@
 #include "touch_043.h"
 #include "touch_iic.h"
 #include "lcd_rgb.h"
+#include "sdio.h"
+
 extern void SystemCoreClockUpdate(void);
 #if 0
 
@@ -101,8 +103,6 @@ void rt_hw_board_init()//RTT启动调用，时钟和串口
 	{
 		printf("SDRAM init fail\n");
 	}
-//	LCD_Init();			// LCD控制器初始化
-	
 	
 	/*硬件 BSP 初始化统统放在这里，比如 LED，串口， LCD 等*/ 
 	

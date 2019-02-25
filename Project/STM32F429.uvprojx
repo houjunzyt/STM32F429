@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>STM32F429BITx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.11.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.13.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) IROM(0x08000000,0x200000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F429_439xx,ARM_MATH_CM4,__CC_ARM,ARM_MATH_MATRIX_CHECK,ARM_MATH_ROUNDING,__FPU_PRESENT=1,__FPU_USED=1,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH;..\Driver\LCD;..\RT-Thread\include\libc;..\RT-Thread\include;..\RT-Thread\components\finsh;..\RT-Thread\bsp;..\STemWin5.40;..\STemWin5.40\inc;..\STemWin5.40\Config;..\STemWin5.40\Application;..\DspLib\Include</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\User;..\Driver\LED;..\Driver\DELAY;..\Driver\SDRAM;..\Driver\USART;..\Driver\TOUCH;..\Driver\LCD;..\RT-Thread\include\libc;..\RT-Thread\include;..\RT-Thread\components\finsh;..\RT-Thread\bsp;..\STemWin5.40;..\STemWin5.40\inc;..\STemWin5.40\Config;..\STemWin5.40\Application;..\DspLib\Include;..\FATFS;..\Driver\SD;..\FatFs</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -505,6 +505,11 @@
               <FileName>lcd_rgb.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Driver\LCD\lcd_rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Driver\SD\sdio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -785,6 +790,26 @@
               <FileName>GUIDEMO_ZoomAndRotate.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STemWin5.40\Application\GUIDEMO_ZoomAndRotate.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FATFS</GroupName>
+          <Files>
+            <File>
+              <FileName>ffunicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FatFs\ffunicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FatFs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FatFs\diskio.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -25,6 +25,7 @@ SET CPU_CLOCK=0x00B71B00
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\touch_043.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\touch_iic.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\lcd_rgb.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\sdio.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\main.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\stm32f4xx_it.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\board.__i"
@@ -74,6 +75,9 @@ SET CPU_CLOCK=0x00B71B00
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\guidemo_vscreen.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\guidemo_washingmachine.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\guidemo_zoomandrotate.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\ffunicode.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\ff.__i"
+"D:\keil\ARM\ARMCC\Bin\ArmCC" --Via "..\output\diskio.__i"
 "D:\keil\ARM\ARMCC\Bin\ArmLink" --Via "..\Output\STM32F429.lnp"
 "D:\keil\ARM\ARMCC\Bin\fromelf.exe" "..\Output\STM32F429.axf" --i32combined --output "..\Output\STM32F429.hex"
 fromelf --bin --output  ..\Output\STM32F429.bin  ..\Output\STM32F429.axf
